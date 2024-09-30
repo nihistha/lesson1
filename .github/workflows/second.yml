@@ -1,0 +1,46 @@
+name: second
+
+on: push
+
+jobs:
+  job1:
+      name: first job
+      runs-on: ubuntu-latest
+      steps: 
+      - name: Step one
+        uses: actions/checkout@v2
+      - name: Step two
+        run: env | sort
+      - name: Print current date
+        run: date
+  job2:
+      name: second job
+      runs-on: windows-latest
+      steps: 
+      - name: Step one
+        uses: actions/checkout@v2
+      - name: Step two
+        run: "Get-Childitem Env: | Sort-Object Name"
+      - name: Print current data
+        run: date
+  job3:
+      name: third job
+      runs-on: macos-latest
+      steps: 
+      - name: Step one
+        uses: actions/checkout@v2
+      - name: Step two
+        run: env | sort
+      - name: Print Current date
+        run: date
+  job4:
+      name: fourth job
+      needs: [job1, job2, job3]
+      runs-on: ubuntu-latest
+      steps:
+      - name: Step one
+        uses: actions/checout@v2
+      - name: step two
+        run: env | sort
+      - name: Print current date
+        run: date
